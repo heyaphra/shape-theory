@@ -23,9 +23,7 @@ module.exports = function (pcset, rotationType = "parallel") {
             transposeBy(distance(derivativeRotation[0], FUNDAMENTAL))
           )
         : null;
-    res.push(
-      rotationType === "parallel" ? parallelRotation : derivativeRotation
-    );
+    res.push(parallelRotation || derivativeRotation);
   }
   return res;
 };
