@@ -17,10 +17,12 @@ module.exports = function (pcset, rotationType = "parallel") {
       ...res[i].slice(1, pcset.notes.length),
       res[i][0],
     ];
-    const parallelRotation = derivativeRotation.map((note) => {
-      return transposeBy(distance(derivativeRotation[0], FUNDAMENTAL))(note);
-    });
-    res.push(rotationType === "parallel" ? parallelRotation : derivativeRotation);
+    const parallelRotation = derivativeRotation.map(
+      transposeBy(distance(derivativeRotation[0], FUNDAMENTAL))
+    );
+    res.push(
+      rotationType === "parallel" ? parallelRotation : derivativeRotation
+    );
   }
   return res;
 };
