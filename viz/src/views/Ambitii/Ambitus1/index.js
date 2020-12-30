@@ -7,18 +7,21 @@ class Ambitus1 extends Component {
       <div
         style={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
         }}
       >
         <div
           style={{
             width: "200px",
             height: "200px",
-            display: "flex",
           }}
         >
-          <PitchCircle shapeData={["C", "D", "E"]} />
+          <h1>
+            Ambitus 1 <br /> (Semitone)
+          </h1>
+
+          <PitchCircle shapeData={["C", "C#"]} />
         </div>
       </div>
     );
