@@ -4,6 +4,7 @@ import createInputEvents from "simple-input-events";
 import Color from "color";
 import { Line } from "./constants";
 import { distributePolar, hitTest } from "./util";
+import { Note } from "@tonaljs/tonal";
 
 class PitchCircle extends Component {
   selection = {};
@@ -40,16 +41,21 @@ class PitchCircle extends Component {
 
   trace = (noteSource) => {
     const nodes = noteSource.map((note, index) =>
-      this._points.find((p) => p.noteName === note)
+      this._points.find(
+        (p) => p.noteName === note || p.noteName === Note.enharmonic(note)
+      )
     );
-    console.log(nodes);
-    const nextLines = nodes.map((p, i) => {
-      return new Line(
-        { head: p, tail: nodes[(i + 1) % nodes.length] },
-        this.stage.ctx
-      );
-    });
-    this._lines = nextLines;
+    if (noteSource.length === 1) {
+      nodes[0].circumscribed = true;
+    } else {
+      const nextLines = nodes.map((p, i) => {
+        return new Line(
+          { head: p, tail: nodes[(i + 1) % nodes.length] },
+          this.stage.ctx
+        );
+      });
+      this._lines = nextLines;
+    }
   };
 
   onResize = async (stage) => {

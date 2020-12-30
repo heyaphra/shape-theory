@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "../../context";
 import {
+  Ambitus0,
   Ambitus1,
   Ambitus2,
   Ambitus3,
@@ -16,6 +17,11 @@ import {
 } from "../Ambitii";
 
 const ambitii = [
+  {
+    name: "Ambitus 0",
+    route: "0",
+    component: Ambitus0,
+  },
   {
     name: "Ambitus 1",
     route: "1",

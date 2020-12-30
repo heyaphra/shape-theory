@@ -41,6 +41,19 @@ export const Point = class {
     this.ctx.arc(this.coords.x, this.coords.y, this.radius, 0, 2 * Math.PI);
     this.ctx.fill();
     this.ctx.closePath();
+
+    if (this.circumscribed) {
+      this.ctx.beginPath();
+      this.ctx.arc(
+        this.coords.x,
+        this.coords.y,
+        this.radius + 3,
+        0,
+        2 * Math.PI
+      );
+      this.ctx.stroke();
+      this.ctx.closePath();
+    }
   };
 
   distanceFrom = ([x, y]) => {
@@ -50,37 +63,36 @@ export const Point = class {
 };
 
 export const Line = class {
-    constructor({ head, tail }, ctx) {
-      this.head = head;
-      this.tail = tail;
-      this.ctx = ctx;
-      const colorA = Color(this.head.color);
-      const colorB = Color(this.tail.color);
-      this.color = colorA.mix(colorB);
+  constructor({ head, tail }, ctx) {
+    this.head = head;
+    this.tail = tail;
+    this.ctx = ctx;
+    const colorA = Color(this.head.color);
+    const colorB = Color(this.tail.color);
+    this.color = colorA.mix(colorB);
+  }
+
+  draw(mode = "circle") {
+    // TO DO: get a basic arc chart mode working, then work out a smoother integration
+    // Also, detect if mouse over or under point and draw arc accordingly
+    const { ctx } = this;
+    ctx.lineWidth = 0.75;
+    ctx.strokeStyle = this.color;
+    ctx.beginPath();
+    ctx.moveTo(this.head.coords.x, this.head.coords.y);
+    if (mode === "line") {
+      ctx.bezierCurveTo(
+        this.head.coords.x,
+        this.head.coords.y + 80,
+        this.tail.coords.x,
+        this.tail.coords.y + 80,
+        this.tail.coords.x,
+        this.tail.coords.y
+      );
+    } else {
+      ctx.lineTo(this.tail.coords.x, this.tail.coords.y);
     }
-  
-    draw(mode = "circle") {
-      // TO DO: get a basic arc chart mode working, then work out a smoother integration
-      // Also, detect if mouse over or under point and draw arc accordingly
-      const { ctx } = this;
-      ctx.lineWidth = 0.75;
-      ctx.strokeStyle = this.color;
-      ctx.beginPath();
-      ctx.moveTo(this.head.coords.x, this.head.coords.y);
-      if (mode === "line") {
-        ctx.bezierCurveTo(
-          this.head.coords.x,
-          this.head.coords.y + 80,
-          this.tail.coords.x,
-          this.tail.coords.y + 80,
-          this.tail.coords.x,
-          this.tail.coords.y
-        );
-      } else {
-        ctx.lineTo(this.tail.coords.x, this.tail.coords.y);
-      }
-      ctx.stroke();
-      ctx.closePath();
-    }
-  };
-  
+    ctx.stroke();
+    ctx.closePath();
+  }
+};

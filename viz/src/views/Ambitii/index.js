@@ -1,3 +1,4 @@
+export { Ambitus0 } from "./Ambitus0";
 export { Ambitus1 } from "./Ambitus1";
 export { Ambitus2 } from "./Ambitus2";
 export { Ambitus3 } from "./Ambitus3";

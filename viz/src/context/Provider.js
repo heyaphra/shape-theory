@@ -5,12 +5,7 @@ const { REACT_APP_SOCKET_PORT: SOCKET_PORT } = process.env;
 const SOCKET_HOST = window.location.hostname;
 
 class Provider extends Component {
-
-  state = {
-    passedDownFromProvider: "ฅ^•ﻌ•^ฅ",
-    isAuthenticated: false
-  };
-
+  state = {};
 
   render() {
     return (
