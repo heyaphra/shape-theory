@@ -13,7 +13,7 @@ import {
   Ambitus9,
   Ambitus10,
   Ambitus11,
-} from "../../components/Ambitii";
+} from "../Ambitii";
 
 const ambitii = [
   {
@@ -78,7 +78,6 @@ const Ambitus = connect(
     renderAmbitii = () => {
       const { match } = this.props;
       return ambitii.map(({ name, route, component }) => {
-        console.log(component);
         return (
           <Route
             exact

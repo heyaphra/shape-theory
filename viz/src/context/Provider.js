@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Context } from "./";
-import { publisher } from "../pubsub";
 
 const { REACT_APP_SOCKET_PORT: SOCKET_PORT } = process.env;
 const SOCKET_HOST = window.location.hostname;

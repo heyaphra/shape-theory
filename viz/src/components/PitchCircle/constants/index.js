@@ -63,7 +63,7 @@ export const Line = class {
       // TO DO: get a basic arc chart mode working, then work out a smoother integration
       // Also, detect if mouse over or under point and draw arc accordingly
       const { ctx } = this;
-      ctx.lineWidth = 0.5;
+      ctx.lineWidth = 0.75;
       ctx.strokeStyle = this.color;
       ctx.beginPath();
       ctx.moveTo(this.head.coords.x, this.head.coords.y);

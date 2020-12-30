@@ -20,6 +20,7 @@ class PitchCircle extends Component {
 
   draw = () => {
     const { ctx, width, height } = this.stage;
+    const { shapeData } = this.props;
     ctx.clearRect(0, 0, width, height);
     if (!this._points.length) {
       this._points = distributePolar({
@@ -30,6 +31,7 @@ class PitchCircle extends Component {
         N_NOTES: 12,
         colorModel: this.props.ColorModel,
       });
+      if (shapeData) this.trace(shapeData);
     }
     this._points.forEach((p) => p.draw(ctx));
     this._lines.forEach((l) => l.draw(ctx));
@@ -40,6 +42,7 @@ class PitchCircle extends Component {
     const nodes = noteSource.map((note, index) =>
       this._points.find((p) => p.noteName === note)
     );
+    console.log(nodes);
     const nextLines = nodes.map((p, i) => {
       return new Line(
         { head: p, tail: nodes[(i + 1) % nodes.length] },
@@ -47,7 +50,6 @@ class PitchCircle extends Component {
       );
     });
     this._lines = nextLines;
-    this.draw();
   };
 
   onResize = async (stage) => {
