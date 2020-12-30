@@ -1,0 +1,11 @@
+export { Ambitus1 } from "./Ambitus1";
+export { Ambitus2 } from "./Ambitus2";
+export { Ambitus3 } from "./Ambitus3";
+export { Ambitus4 } from "./Ambitus4";
+export { Ambitus5 } from "./Ambitus5";
+export { Ambitus6 } from "./Ambitus6";
+export { Ambitus7 } from "./Ambitus7";
+export { Ambitus8 } from "./Ambitus8";
+export { Ambitus9 } from "./Ambitus9";
+export { Ambitus10 } from "./Ambitus10";
+export { Ambitus11 } from "./Ambitus11";
