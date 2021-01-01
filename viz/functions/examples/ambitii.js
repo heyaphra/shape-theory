@@ -1,4 +1,3 @@
-// Coming soon...
 const {
   Note,
   Scale,
