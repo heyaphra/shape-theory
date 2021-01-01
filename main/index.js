@@ -57,35 +57,25 @@ function getAllSubsets(ambitus) {
 function generate_ambitii() {
   // Soon-to-be JSON
   const ambitii = [];
-
   // Current ambitus
   let ambitus = 0;
-
   // Tracks the number of shapes generated to account for algorithm accuracy.
   let shapes = 0;
-
   while (ambitus < 12) {
     // The actual data for the current ambitus
     const _ambitus = getAllSubsets(ambitus);
-
     // The number of shapes in the current ambitus
     const len = _ambitus[ambitus].length;
     shapes += len;
-
     console.log(`Generated ${len} shapes for ambitus ${ambitus}:`);
-
     // Add it to the dataset
     ambitii.push(_ambitus);
-
     // Proceed!
     ambitus++;
   }
-
   console.log(`Done! Generated ${shapes} shapes.`);
-  
   // Save to disk
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));
-
   // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
   return ambitii;
 }
