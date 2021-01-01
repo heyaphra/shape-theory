@@ -29,7 +29,8 @@ function getAllSubsets(ambitus) {
   // Find all subsets in pcset. Pretty meaty 10 lines of code.
   // It would be better to make an animated explaination rather 
   // than attempt to explain it in comments. If you can read it
-  // and understand it, then kudos.
+  // and understand it, then kudos. If not, you can become a 
+  // patron here: <insert patreon plug> :-)
   const subsets = pcset.reduce(
     (subsets, value) => {
       const data = subsets[ambitus].map(set => {
