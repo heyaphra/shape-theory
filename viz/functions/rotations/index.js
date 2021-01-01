@@ -11,12 +11,10 @@ const FUNDAMENTAL = "C";
  * @param {string} rotationType - May be "parallel" or "derivative"
  */
 module.exports = function (pcset, rotationType = "parallel") {
+  if (pcset.length < 2) return [];
   const res = [pcset];
   for (let i = 0; i < pcset.length - 1; i++) {
-    const derivativeRotation = [
-      ...res[i].slice(1, pcset.length),
-      res[i][0],
-    ];
+    const derivativeRotation = [...res[i].slice(1, pcset.length), res[i][0]];
     const parallelRotation =
       rotationType === "parallel"
         ? derivativeRotation.map(
