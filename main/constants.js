@@ -1,6 +1,5 @@
 const { Scale, Note: { enharmonic } } = require("@tonaljs/tonal");
 
-
 const FUNDAMENTAL = "C";
 const CHROMATIC_DATUM = Scale.get(`${FUNDAMENTAL} chromatic`);
 const CHROMATIC_SCALE = CHROMATIC_DATUM["notes"].map(n => enharmonic(n))
