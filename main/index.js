@@ -55,29 +55,28 @@ function getAllSubsets(ambitus) {
 
 // Generate ambitii and write JSON to disk.
 function generate_ambitii() {
-  // Soon-to-be JSON
-  const ambitii = [];
-  // Current ambitus
-  let ambitus = 0;
-  // Tracks the number of shapes generated to account for algorithm accuracy.
-  let shapes = 0;
+  const ambitii = []; // Soon-to-be JSON
+
+  let ambitus = 0; // Current ambitus
+  let shapes = 0; // Track the number of shapes generated to account for algorithm accuracy.
+
   while (ambitus < 12) {
-    // The actual data for the current ambitus
-    const _ambitus = getAllSubsets(ambitus);
-    // The number of shapes in the current ambitus
-    const len = _ambitus[ambitus].length;
-    shapes += len;
-    console.log(`Generated ${len} shapes for ambitus ${ambitus}:`);
-    // Add it to the dataset
-    ambitii.push(_ambitus);
-    // Proceed!
-    ambitus++;
+    const _ambitus = getAllSubsets(ambitus); // The actual data for the current ambitus
+    const len = _ambitus[ambitus].length; // The number of shapes in the current ambitus
+
+    ambitii.push(_ambitus); // Push it to the dataset
+
+    shapes += len; // Add to the total number of shapes seen so far.
+    ambitus++; // Onward!
+
+    console.log(`Generated ${len} shapes for ambitus ${ambitus}`);
   }
+
+  require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));   // Save to disk
+
   console.log(`Done! Generated ${shapes} shapes.`);
-  // Save to disk
-  require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));
-  // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
-  return ambitii;
+
+  return ambitii;  // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
 }
 
 module.exports = { generate_ambitii }
