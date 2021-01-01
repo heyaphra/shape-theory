@@ -10,7 +10,8 @@ const {
  * ================================================================================================
  * @param {number} ambitus - The ambitus. 
  * @returns {object} - All non-redundant subsets in a given ambitus.
- */
+ * ================================================================================================
+ *=================================================================================================*/
 function getAllSubsets(ambitus) {
   // The interval the ambitus represents. 
   // Ex: Ambitus = 3 -> ["C", "D"]
