@@ -51,6 +51,7 @@ function getAllSubsets(ambitus) {
     return s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1]
   })
   .sort((a, b) => a.notes.length - b.notes.length);
+  
   return subsets;
 }
 
