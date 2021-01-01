@@ -70,9 +70,7 @@ function generate_ambitii() {
   }
 
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));   // Save to disk
-
   console.log(`Done! Generated ${shapes} shapes.`);
-
   return ambitii; // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
 }
 
