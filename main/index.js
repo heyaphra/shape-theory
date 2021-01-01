@@ -6,7 +6,6 @@ const {
   ALL_INTERVALS
 } = require("./constants");
 
-
 function getAllSubsets(ambitus) {
   const intervalIdentity = [
     CHROMATIC_SCALE[0],
@@ -51,6 +50,5 @@ function generate_ambitii() {
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));
   return ambitii;
 }
-
 
 module.exports = { generate_ambitii }
