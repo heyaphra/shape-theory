@@ -1,6 +1,5 @@
 {
   "dependencies": {
     "@tonaljs/tonal": "^4.6.0",
-    "react-fast-compare": "^3.2.0"
   }
 }

@@ -1,9 +1,8 @@
 const { generate_ambitii } = require('./index')
-const compare = require('react-fast-compare');
 
 const ambitii = generate_ambitii();
 
-const seen = {}
+const seen = {};
 
 let currentAmbitus = 0;
 while (currentAmbitus < 12) {
@@ -13,10 +12,10 @@ while (currentAmbitus < 12) {
         if (!(id in seen)) {
             seen[id] = 1;
         } else {
-            return console.log("ERROR: Found duplicates in the dataset.")
+            return console.log("ERROR: Found duplicates in the dataset.");
         }
     })
     currentAmbitus++;
 }
 
-console.log("SUCCESS: 0 duplicates were found in the dataset!")
+console.log("SUCCESS: 0 duplicates were found in the dataset!");
