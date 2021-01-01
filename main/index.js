@@ -14,7 +14,7 @@ function getAllSubsets(ambitus) {
     CHROMATIC_SCALE.indexOf(Note.enharmonic(Note.transpose(FUNDAMENTAL, ALL_INTERVALS[ambitus])))
     ],
   ];
-  
+
   const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1).reverse();
 
   const subsets = pcset.reduce(
@@ -45,13 +45,14 @@ function generate_ambitii() {
     const _ambitus = getAllSubsets(ambitus);
     const len = _ambitus[ambitus].length;
     shapes += len;
-    console.log(`Generated ${len} shapes for ambitus ${ambitus}:`);
+    // console.log(`Generated ${len} shapes for ambitus ${ambitus}:`);
     ambitii.push(_ambitus);
     ambitus++;
   }
-  console.log(`Done! Generated ${shapes} shapes.`);
+  // console.log(`Done! Generated ${shapes} shapes.`);
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));
   return ambitii;
 }
 
-generate_ambitii();
+
+module.exports = { generate_ambitii }
