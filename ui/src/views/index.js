@@ -1,1 +1,0 @@
-export { Ambitus } from "./Ambitus";
