@@ -1,1 +1,0 @@
-exports.rotations = require('./rotations');
