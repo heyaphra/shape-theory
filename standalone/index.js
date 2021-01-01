@@ -5,8 +5,7 @@ const {
   Collection: { permutations },
 } = require("@tonaljs/tonal");
 const { transpose } = Note;
-const { rotations } = require("..");
-const compare = require("react-fast-compare");
+const { rotations } = require("./rotations");
 
 const FUNDAMENTAL = "C";
 const CHROMATIC_DATUM = Scale.get(`${FUNDAMENTAL} chromatic`);
