@@ -15,7 +15,7 @@ function getAllSubsets(ambitus) {
     ],
   ];
 
-  const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1).reverse();
+  const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1);
 
   const subsets = pcset.reduce(
     (subsets, value) => {
