@@ -6,16 +6,29 @@ const {
   ALL_INTERVALS
 } = require("./constants");
 
+/** getAllSubsets =================================================================================
+ * ================================================================================================
+ * @param {number} ambitus - The ambitus. 
+ * @returns {object} - All non-redundant subsets in a given ambitus.
+ */
 function getAllSubsets(ambitus) {
-  const intervalIdentity = [
+  // The interval the ambitus represents. 
+  // Ex: Ambitus = 3 -> ["C", "D"]
+  const interval = [
     CHROMATIC_SCALE[0],
     CHROMATIC_SCALE[
     CHROMATIC_SCALE.indexOf(Note.enharmonic(Note.transpose(FUNDAMENTAL, ALL_INTERVALS[ambitus])))
     ],
   ];
 
+  // All notes in range { interval[0]...interval[1] }. 
+  // Ex: Ambitus = 3 -> ["C", "Db", "D"]
   const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1);
 
+  // Find all subsets in pcset. Pretty meaty 10 lines of code.
+  // It would be better to make an animated explaination rather 
+  // than attempt to explain it in comments. If you can read it
+  // and understand it, then kudos.
   const subsets = pcset.reduce(
     (subsets, value) => {
       const data = subsets[ambitus].map(set => {
@@ -27,13 +40,18 @@ function getAllSubsets(ambitus) {
       return { [ambitus]: subsets[ambitus] };
     }, { [ambitus]: [{ notes: [], chroma: [] }] });
 
+  // Remove redundant pcsets. For example, ["Eb", "C", "D"] is redundant 
+  // because it is isomorphic to ["C", "D", "Eb"]. Since we take a parallel
+  // (as opposed to derivative) approach to the presentation of shapes, these
+  // kinds of isomorphisms are ommitted.
   subsets[ambitus] = subsets[ambitus]
-    .filter(s => s['notes'][0] === intervalIdentity[0] && s['notes'][s.notes.length - 1] === intervalIdentity[1])
+    .filter(s => s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1])
     .sort((a, b) => a.notes.length - b.notes.length);
 
   return subsets;
 }
 
+// Generate ambitii and write JSON to disk.
 function generate_ambitii() {
   const ambitii = [];
   let ambitus = 0;
