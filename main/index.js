@@ -76,7 +76,7 @@ function generate_ambitii() {
 
   console.log(`Done! Generated ${shapes} shapes.`);
 
-  return ambitii;  // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
+  return ambitii; // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
 }
 
 module.exports = { generate_ambitii }
