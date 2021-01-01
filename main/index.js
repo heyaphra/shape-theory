@@ -30,7 +30,7 @@ function getAllSubsets(ambitus) {
   // It would be better to make an animated explaination rather 
   // than attempt to explain it in comments. If you can read it
   // and understand it, then kudos. If not, you can become a 
-  // patron here: <insert patreon plug> ;-)
+  // patron here: <insert patreon plug> (◕ᴗ◕✿)
   const subsets = pcset.reduce(
     (subsets, value) => {
       const data = subsets[ambitus].map(set => {
