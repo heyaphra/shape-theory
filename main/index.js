@@ -62,7 +62,7 @@ function generate_ambitii() {
   let ambitus = 0; // Current ambitus
   let shapes = 0; // Track the number of shapes generated to account for algorithm accuracy.
 
-  while (ambitus < 5) {
+  while (ambitus < 12) {
     const _ambitus = getAllSubsets(ambitus); // The actual data for the current ambitus
     const len = _ambitus[ambitus].length; // The number of shapes in the current ambitus
     ambitii.push(_ambitus); // Push it to the dataset
