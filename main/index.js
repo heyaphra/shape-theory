@@ -24,7 +24,7 @@ function getAllSubsets(ambitus) {
 
   // All notes in range { interval[0]...interval[1] }. 
   // Ex: Ambitus = 3 -> ["C", "Db", "D"]
-  const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1);
+  const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1).reverse();
 
   // Find all subsets in pcset. Pretty meaty 10 lines of code.
   // It would be better to make an animated explaination rather 
@@ -47,31 +47,36 @@ function getAllSubsets(ambitus) {
   // (as opposed to derivative) approach to the presentation of shapes, these
   // kinds of isomorphisms are ommitted.
   subsets[ambitus] = subsets[ambitus]
-    .filter(s => s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1])
-    .sort((a, b) => a.notes.length - b.notes.length);
-
+  .filter(s => {
+    return s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1]
+  })
+  .sort((a, b) => a.notes.length - b.notes.length);
   return subsets;
 }
 
 // Generate ambitii and write JSON to disk.
 function generate_ambitii() {
+  console.time("ambitii")
   const ambitii = []; // Soon-to-be JSON
 
   let ambitus = 0; // Current ambitus
   let shapes = 0; // Track the number of shapes generated to account for algorithm accuracy.
 
-  while (ambitus < 12) {
+  while (ambitus < 5) {
     const _ambitus = getAllSubsets(ambitus); // The actual data for the current ambitus
     const len = _ambitus[ambitus].length; // The number of shapes in the current ambitus
     ambitii.push(_ambitus); // Push it to the dataset
+    console.log(`Generated ${len} shapes for ambitus ${ambitus}`);
     shapes += len; // Add to the total number of shapes seen so far.
     ambitus++; // Onward!
-    console.log(`Generated ${len} shapes for ambitus ${ambitus}`);
   }
 
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));   // Save to disk
   console.log(`Done! Generated ${shapes} shapes.`);
+  console.timeEnd("ambitii")
   return ambitii; // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
 }
 
 module.exports = { generate_ambitii }
+
+generate_ambitii()
