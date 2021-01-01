@@ -47,11 +47,9 @@ function getAllSubsets(ambitus) {
   // (as opposed to derivative) approach to the presentation of shapes, these
   // kinds of isomorphisms are ommitted.
   subsets[ambitus] = subsets[ambitus]
-  .filter(s => {
-    return s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1]
-  })
+  .filter(s => s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1])
   .sort((a, b) => a.notes.length - b.notes.length);
-  
+
   return subsets;
 }
 
