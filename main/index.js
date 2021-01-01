@@ -22,16 +22,14 @@ function getAllSubsets(ambitus) {
       const data = subsets[ambitus].map(set => {
         const notes = [value, ...set.notes];
         const chroma = notes.map(n => Note.chroma(n));
-        return { notes, chroma }
+        return { notes, chroma };
       });
       subsets[ambitus] = subsets[ambitus].concat(data);
       return { [ambitus]: subsets[ambitus] };
     }, { [ambitus]: [{ notes: [], chroma: [] }] });
 
   subsets[ambitus] = subsets[ambitus]
-    .filter(s => {
-      return s['notes'][0] === intervalIdentity[0] && s['notes'][s.notes.length - 1] === intervalIdentity[1]
-    })
+    .filter(s => s['notes'][0] === intervalIdentity[0] && s['notes'][s.notes.length - 1] === intervalIdentity[1])
     .sort((a, b) => a.notes.length - b.notes.length);
 
   return subsets;
