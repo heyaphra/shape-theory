@@ -63,12 +63,9 @@ function generate_ambitii() {
   while (ambitus < 12) {
     const _ambitus = getAllSubsets(ambitus); // The actual data for the current ambitus
     const len = _ambitus[ambitus].length; // The number of shapes in the current ambitus
-
     ambitii.push(_ambitus); // Push it to the dataset
-
     shapes += len; // Add to the total number of shapes seen so far.
     ambitus++; // Onward!
-
     console.log(`Generated ${len} shapes for ambitus ${ambitus}`);
   }
 
