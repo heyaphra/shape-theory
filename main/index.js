@@ -80,7 +80,9 @@ function generate_ambitii() {
     // Proceed!
     ambitus++;
   }
+
   console.log(`Done! Generated ${shapes} shapes.`);
+  
   // Save to disk
   require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));
 
