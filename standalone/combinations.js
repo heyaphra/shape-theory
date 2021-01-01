@@ -20,6 +20,7 @@ function getAllSubsets(ambitus) {
     const pcset = CHROMATIC_SCALE.slice(0, ambitus + 1).reverse();
     return pcset.reduce(
         (subsets, value) => {
+            console.log(value, set)
             return subsets.concat(
                 subsets.map(set => [value, ...set])
             )
