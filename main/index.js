@@ -36,19 +36,19 @@ function getAllSubsets(ambitus) {
       const data = subsets[ambitus].map(set => {
         const notes = [value, ...set.notes];
         const chroma = notes.map(n => Note.chroma(n));
-        return { notes, chroma };
+        return { notes, chroma, ambitus };
       });
       subsets[ambitus] = subsets[ambitus].concat(data);
       return { [ambitus]: subsets[ambitus] };
-    }, { [ambitus]: [{ notes: [], chroma: [] }] });
+    }, { [ambitus]: [{ notes: [], chroma: [], ambitus }] });
 
   // Remove redundant pcsets. For example, ["Eb", "C", "D"] is redundant 
   // because it is isomorphic to ["C", "D", "Eb"]. Since we take a parallel
   // (as opposed to derivative) approach to the presentation of shapes, these
   // kinds of isomorphisms are ommitted.
   subsets[ambitus] = subsets[ambitus]
-  .filter(s => s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1])
-  .sort((a, b) => a.notes.length - b.notes.length);
+    .filter(s => s['notes'][0] === interval[0] && s['notes'][s.notes.length - 1] === interval[1])
+    .sort((a, b) => a.notes.length - b.notes.length);
 
   return subsets;
 }
@@ -64,18 +64,18 @@ function generate_ambitii() {
   while (ambitus < 12) {
     const _ambitus = getAllSubsets(ambitus); // The actual data for the current ambitus
     const len = _ambitus[ambitus].length; // The number of shapes in the current ambitus
-    ambitii.push(_ambitus); // Push it to the dataset
+    ambitii.push(..._ambitus[ambitus]); // Push it to the dataset
     console.log(`Generated ${len} shapes for ambitus ${ambitus}`);
     shapes += len; // Add to the total number of shapes seen so far.
     ambitus++; // Onward!
   }
 
-  require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));   // Save to disk
+  // Save to disk. Commented out for browser version.
+  // require("fs").writeFileSync("ambitii.json", JSON.stringify(ambitii, null, 2));   // Save to disk
   console.log(`Done! Generated ${shapes} shapes.`);
   console.timeEnd("ambitii")
   return ambitii; // Return the JS object if needed elsewhere (ex: see ./check_duplicates.js)
 }
 
+window.generate_ambitii = generate_ambitii;
 module.exports = { generate_ambitii }
-
-generate_ambitii()

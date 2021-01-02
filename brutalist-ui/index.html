@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Under construction...</title>
+    <script src="bundle.js"></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      ul > li {
+        line-height: 4vh;
+        list-style-type: none;
+      }
+      
+      #buttons {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+
+    </style>
+    <h1 id="header"></h1>
+    <ul id="demo"></ul>
+    <div id="buttons"></div>
+    <script>
+      const header = document.getElementById("header");
+
+      const list = document.getElementById("demo");
+
+      const ambitii = generate_ambitii();
+
+      const get_ambitus = (which) => {
+        return ambitii.filter(({ ambitus }) => which === ambitus);
+      };
+
+      const renderAmbitus = (num) => {
+        const a = get_ambitus(num);
+        const newHeader = document.createTextNode(`Ambitus ${num}`);
+        header.textContent = "";
+        list.textContent = "";
+        document.querySelector("#header").appendChild(newHeader);
+        a.forEach(({ ambitus, chroma, notes }) => {
+          let li_item = document.createElement("li");
+          li_item.appendChild(
+            document.createTextNode(`[${notes}] [${chroma}]`)
+          );
+          list.appendChild(li_item);
+        });
+      };
+
+      const renderButtons = () => {
+        const buttonsDiv = document.querySelector("#buttons");
+        const btns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => {
+          const btn = document.createElement("button");
+          btn.innerHTML = i;
+          btn.className = "a-btn"
+          btn.onclick = () => renderAmbitus(i);
+          buttonsDiv.appendChild(btn);
+        });
+      };
+
+      renderButtons();
+      renderAmbitus(0);
+    </script>
+  </body>
+</html>
