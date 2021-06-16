@@ -43,7 +43,7 @@ function getAllSubsets(ambitus) {
     }, { [ambitus]: [{ notes: [], chroma: [], ambitus }] });
 
   // Remove redundant pcsets. For example, ["Eb", "C", "D"] is redundant 
-  // because it is isomorphic to ["C", "D", "Eb"]. Since we take a parallel
+  // because it is homeomorphic to ["C", "D", "Eb"]. Since we take a parallel
   // (as opposed to derivative) approach to the presentation of shapes, these
   // kinds of isomorphisms are ommitted.
   subsets[ambitus] = subsets[ambitus]
